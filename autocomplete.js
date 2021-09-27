@@ -1,7 +1,7 @@
 const createAutoComplete = ({
 	root, //html document we want to show
 	renderOption, //each movie displayed
-	onOptionSelect, //on click
+	onOptionSelect, //onclick
 	inputValue, //updates the input
 	fetchData, //take text input and bring data back
 }) => {

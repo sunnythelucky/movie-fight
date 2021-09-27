@@ -1,5 +1,10 @@
 const waitFor = (selector) => {
 	return new Promise((resolve, reject) => {
+		const timeout = setTimeout(() => {
+			clearInterval(interval);
+			reject();
+		}, 2000);
+
 		const interval = setInterval(() => {
 			if (document.querySelector(selector)) {
 				clearInterval(interval);
@@ -7,11 +12,6 @@ const waitFor = (selector) => {
 				resolve();
 			}
 		}, 30);
-
-		const timeout = setTimeout(() => {
-			clearInterval(interval);
-			reject();
-		}, 2000);
 	});
 };
 
@@ -20,11 +20,7 @@ beforeEach(() => {
 	createAutoComplete({
 		root: document.querySelector("#target"),
 		fetchData() {
-			return [
-				{ Title: "Avengers" },
-				{ Title: "Not Avengers" },
-				{ Title: "Some other movie" },
-			];
+			return [{ Title: "Avengers" }, { Title: "Not Avengers" }, { Title: "Some other movie" }];
 		},
 		renderOption(movie) {
 			return movie.Title;
